@@ -27,7 +27,7 @@ public class PaymentOrder {
     private final LocalDate currentPaymentDate = LocalDate.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "invoice_id", foreignKey = @ForeignKey(name = "fk_payOrder--invoice-many_to_one"))
+    @JoinColumn(name = "invoice_id", foreignKey = @ForeignKey(name = "fk_payOrder_invoice_many_to_one"))
     Invoice invoice;
 
 

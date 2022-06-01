@@ -30,12 +30,6 @@ public class Company {
     @Column(name = "company_name", nullable = false)
     private String companyName;
 
-    @Column(name = "invoicing_login", nullable = false)
-    private String invoicingLogin;
-
-    @Column(name = "invoicing_password", nullable = false)
-    private String invoicingPassword;
-
     @Column(name = "comp_account_number", nullable = false)
     private String compAccountNumber;
 
