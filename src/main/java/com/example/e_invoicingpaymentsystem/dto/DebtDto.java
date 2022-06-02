@@ -1,6 +1,5 @@
 package com.example.e_invoicingpaymentsystem.dto;
-import com.example.e_invoicingpaymentsystem.model.Company;
-import com.example.e_invoicingpaymentsystem.model.Supplier;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -18,8 +17,9 @@ public class DebtDto {
     private Double total_debt;
 
     @JsonProperty("company")
-    CompanyDto companyDto;
+    private CompanyDto companyDto;
 
-    Supplier supplier;
+    @JsonProperty("supplier")
+    private SupplierDto supplierDto;
 
 }
