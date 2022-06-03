@@ -30,7 +30,4 @@ public class PaymentOrder {
     @JoinColumn(name = "invoice_id", foreignKey = @ForeignKey(name = "fk_payOrder_invoice_many_to_one"))
     Invoice invoice;
 
-
-
-
 }

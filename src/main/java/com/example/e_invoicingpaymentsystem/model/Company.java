@@ -8,17 +8,19 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
 @Table(name = "company")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long compId;
+    @Column(name = "comp_id")
+    private Long id;
 
     @Column(name = "tin", unique = true, nullable = false)
     private String tin;
@@ -45,5 +47,10 @@ public class Company {
     List<Debt> debts = new ArrayList<>();
 
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "comp_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    private Set<Role> roles;
 
 }
