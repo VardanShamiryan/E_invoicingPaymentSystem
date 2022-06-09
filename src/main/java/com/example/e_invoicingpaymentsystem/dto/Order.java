@@ -9,12 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyDto {
+public class Order {
 
-    private String tin;
-    private String companyName;
-    private String compAccountNumber;
-    private String email;
-    private String phoneNumber;
-
+    private Double amount;
+    private String fromAccountNumber;
+    private String toAccountNumber;
 }

@@ -21,7 +21,7 @@ public class InvoiceDto {
     private PaymentStatus paymentStatus = PaymentStatus.UNPAID;
     private Double invoiceDebt;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/yyyy")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate submissionDate;
 
     private LocalDate deliveryDate;
