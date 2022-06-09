@@ -16,8 +16,6 @@ public class PaymentOrderService {
             String fromAccountNumber,
             String toAccountNumber) {
 
-        DefaultHttpClient httpClient = new DefaultHttpClient();
-
         Order order = new Order(amount, fromAccountNumber, toAccountNumber);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -30,14 +28,7 @@ public class PaymentOrderService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<String> entity = new HttpEntity<>(json,headers);
-        ResponseEntity<String> response = template.exchange(url, HttpMethod.PUT, entity, String.class, json);
 
-        response.getHeaders().getLocation();
-        response.getStatusCode();
-        String responseBody = response.getBody();
-        System.out.println(responseBody);
-
-        httpClient.getConnectionManager().shutdown();
-        return response;
+        return template.exchange(url, HttpMethod.PUT, entity, String.class);
     }
 }

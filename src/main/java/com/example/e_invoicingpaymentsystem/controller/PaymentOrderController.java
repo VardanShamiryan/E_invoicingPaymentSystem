@@ -23,10 +23,10 @@ public class PaymentOrderController {
     @PutMapping("/transfer")
     public ResponseEntity<?> transferFromAccountToAccount(@RequestParam Double amount,
                                                        @RequestParam String fromAccountNumber,
-                                                       @RequestParam String toAccountNumber) throws JAXBException {
+                                                       @RequestParam String toAccountNumber) {
         return paymentOrderService.transferFromAccountToAccount(amount,
-                fromAccountNumber,//2201136555777854
-                toAccountNumber);//2201170006838585
+                fromAccountNumber,
+                toAccountNumber);
     }
 
 }
