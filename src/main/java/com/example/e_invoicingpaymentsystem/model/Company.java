@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -22,6 +23,7 @@ public class Company {
     @Column(name = "comp_id")
     private Long id;
 
+    @Pattern(regexp = "[0-9]", message = "Tim must contain only digits")
     @Column(name = "tin", unique = true, nullable = false)
     private String tin;
 
@@ -31,12 +33,14 @@ public class Company {
     @Column(name = "company_name", nullable = false)
     private String companyName;
 
+    //@Pattern(regexp = "[0-9]{16}", message = "account number must contain only digits and be 16 characters long")
     @Column(name = "comp_account_number", nullable = false)
     private String compAccountNumber;
 
     @Column(name = "email", nullable = false)
     private String email;
 
+    //@Pattern(regexp = "[0-9]", message = "account number must contain only digits and be 16 characters long")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 

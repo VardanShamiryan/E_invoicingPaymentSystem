@@ -24,7 +24,7 @@ public class Invoice {
     private Long invoiceId;
 
     @Column(name = "supp_account_number", nullable = false)
-    private String suppAccountNum;
+    private String suppAccountNumber;
 
     @Column(name = "invoice_series", nullable = false)
     private String invoiceSeries;

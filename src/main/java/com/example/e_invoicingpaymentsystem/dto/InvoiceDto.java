@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class InvoiceDto {
 
-    private String suppAccountNum;
+    private String suppAccountNumber;
     private String invoiceSeries;
     private String invoiceNumber;
     private Double totalPrice;
