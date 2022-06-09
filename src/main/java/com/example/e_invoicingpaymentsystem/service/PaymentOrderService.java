@@ -3,7 +3,6 @@ package com.example.e_invoicingpaymentsystem.service;
 import com.example.e_invoicingpaymentsystem.dto.Order;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
