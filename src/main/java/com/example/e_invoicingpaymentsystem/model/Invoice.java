@@ -23,30 +23,30 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long invoiceId;
 
-    @Column(name = "supp_account_number", nullable = false)
-    private String suppAccountNum;
+    @Column(name = "invoice_number", nullable = false)
+    private String invoiceNumber;
 
     @Column(name = "invoice_series", nullable = false)
     private String invoiceSeries;
 
-    @Column(name = "invoice_number", nullable = false)
-    private String invoiceNumber;
+    @Column(name = "delivery_date", nullable = false)
+    private LocalDate deliveryDate;
+
+    @Column(name = "supp_account_number", nullable = false)
+    private String suppAccountNumber;
 
     @Column(name = "total_price", nullable = false)
     private Double totalPrice;
+
+    @Column(name = "submission_date", nullable = false)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/yyyy")
+    private LocalDate submissionDate;
 
     @Column(name = "payment_status", nullable = false)
     private PaymentStatus paymentStatus = PaymentStatus.UNPAID;
 
     @Column(name = "invoice_debt")
     private Double invoiceDebt;
-
-    @Column(name = "submission_date", nullable = false)
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/yyyy")
-    private LocalDate submissionDate;
-
-    @Column(name = "delivery_date", nullable = false)
-    private LocalDate deliveryDate;
 
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.PERSIST)
     private List<PaymentOrder> paymentOrders = new ArrayList<>();

@@ -20,21 +20,19 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long supplierId;
 
+    @Column (name = "supplier_tin", nullable = false, unique = true)
+    private String supplierTin;
+
     @Column(name = "supplier_name", nullable = false, unique = true)
     private String supplierName;
 
     @Column(name ="supp_account_number", nullable = false)
     private String suppAccountNumber;
 
-    @Column (name = "supplier_tin", nullable = false, unique = true)
-    private String supplierTin;
-
     @OneToMany (mappedBy = "supplier", cascade = CascadeType.PERSIST)
     List<Invoice> invoices = new ArrayList<>();
 
     @OneToMany (mappedBy = "supplier", cascade = CascadeType.PERSIST)
     List<Debt> debts = new ArrayList<>();
-
-
 
 }

@@ -1,0 +1,167 @@
+
+<ExportedData xmlns="http://www.taxservice.am/tp3/invoice/definitions">
+    <SignedData>
+        <Data>
+            <SignableData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Invoice" Version="1.0">
+                <User>Artosir</User>
+                <Type>1</Type>
+                <GeneralInfo>
+                    <InvoiceNumber>
+                        <Number>6201396768</Number>
+                        <Series>Ա</Series>
+                    </InvoiceNumber>
+                    <SupplyDate>2022-05-28+04:00</SupplyDate>
+                    <Procedure>2</Procedure>
+                    <DealInfo/>
+                    <AdjustmentAccount>false</AdjustmentAccount>
+                </GeneralInfo>
+                <SupplierInfo>
+                    <VATNumber>07613905/1</VATNumber>
+                    <Taxpayer>
+                        <TIN>07613905</TIN>
+                        <Name>«ՖԱՐՄ ՍԻՍԱՐ» Սահմանափակ պատասխանատվությամբ ընկերություն (ՍՊԸ)</Name>
+                        <Address>ԱՐՄԱՎԻՐ ՓԱՐԱՔԱՐ ՓԱՐԱՔԱՐ ՄԱՅՐԱՔԱՂԱՔԱՅԻՆ 140</Address>
+                        <BankAccount>
+                            <BankName>Ինեկոբանկ ՓԲԸ</BankName>
+                            <BankAccountNumber>2050822001191001</BankAccountNumber>
+                        </BankAccount>
+                    </Taxpayer>
+                    <SupplyLocation>Արմավիրի մ, գ. Փարաքար, Մեքենագործների փ. 6 տուն</SupplyLocation>
+                </SupplierInfo>
+                <BuyerInfo>
+                    <Taxpayer>
+                        <TIN>03546703</TIN>
+                        <Name>«ԼԻՄԱ ՖԱՐՄ» Սահմանափակ պատասխանատվությամբ ընկերություն (ՍՊԸ)</Name>
+                        <Address>ԿՈՏԱՅՔ ԱԲՈՎՅԱՆ  ՀԱՆՐԱՊԵՏՈՒԹՅԱՆ Փ. 6 34</Address>
+                        <TinNotRequired>false</TinNotRequired>
+                    </Taxpayer>
+                    <DeliveryLocation>ք. Աբովյան, Հանրապետության 1/64/2</DeliveryLocation>
+                </BuyerInfo>
+                <GoodsInfo>
+                    <Good>
+                        <Description>Բետասալիկ քսուք 15գ</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>1.0</Amount>
+                        <PricePerUnit>975.83</PricePerUnit>
+                        <Price>975.83</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>195.17</VAT>
+                        <TotalPrice>1171.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Բերոդուալ լ-թ ինգալյացիայի հ. 20մլ</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>3.0</Amount>
+                        <PricePerUnit>3234.17</PricePerUnit>
+                        <Price>9702.5</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>1940.5</VAT>
+                        <TotalPrice>11643.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Դեպոտ Ա-ից ցինկ հաբ N100</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>1.0</Amount>
+                        <PricePerUnit>4516.67</PricePerUnit>
+                        <Price>4516.67</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>903.33</VAT>
+                        <TotalPrice>5420.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Դիկլոն մոմիկ 12.5մգ N10</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>5.0</Amount>
+                        <PricePerUnit>1010.0</PricePerUnit>
+                        <Price>5050.0</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>1010.0</VAT>
+                        <TotalPrice>6060.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Էսսենցիալե Н ամպ. 5մլ N5</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>3.0</Amount>
+                        <PricePerUnit>4048.33</PricePerUnit>
+                        <Price>12145.0</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>2429.0</VAT>
+                        <TotalPrice>14574.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Լակտոդոզ դպճ. N60</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>1.0</Amount>
+                        <PricePerUnit>12666.67</PricePerUnit>
+                        <Price>12666.67</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>2533.33</VAT>
+                        <TotalPrice>15200.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Հեքսասփրեյ ցողացիր 750մգ/30գ N1</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>2.0</Amount>
+                        <PricePerUnit>1800.0</PricePerUnit>
+                        <Price>3600.0</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>720.0</VAT>
+                        <TotalPrice>4320.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Սալբուտամոլ օշարակ 2մգ/5մլ 125մլ</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>2.0</Amount>
+                        <PricePerUnit>946.67</PricePerUnit>
+                        <Price>1893.33</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>378.67</VAT>
+                        <TotalPrice>2272.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Վիշնևսկու նրբամածուկ 40գ</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>5.0</Amount>
+                        <PricePerUnit>264.17</PricePerUnit>
+                        <Price>1320.83</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>264.17</VAT>
+                        <TotalPrice>1585.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Օմեպրազոլ դպճ. 20մգ N30</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>3.0</Amount>
+                        <PricePerUnit>304.17</PricePerUnit>
+                        <Price>912.5</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>182.5</VAT>
+                        <TotalPrice>1095.0</TotalPrice>
+                    </Good>
+                    <Good>
+                        <Description>Ֆոսֆոգլիվ դպճ. N50</Description>
+                        <Unit>հատ</Unit>
+                        <Amount>3.0</Amount>
+                        <PricePerUnit>4191.67</PricePerUnit>
+                        <Price>12575.0</Price>
+                        <VATRate>20.0</VATRate>
+                        <VAT>2515.0</VAT>
+                        <TotalPrice>15090.0</TotalPrice>
+                    </Good>
+                    <Total>
+                        <Price>65358.0</Price>
+                        <VAT>13072.0</VAT>
+                        <TotalPrice>78430.0</TotalPrice>
+                    </Total>
+                </GoodsInfo>
+            </SignableData>
+        </Data>
+        <Signature>
+            <SignatureType>PKCS7</SignatureType>
+            <SignatureValue>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</SignatureValue>
+        </Signature>
+        <InvoiceMetadata>
+            <SubmissionDate>2022-05-28T14:19:40.238+04:00</SubmissionDate>
+        </InvoiceMetadata>
+    </SignedData>
+</ExportedData>
