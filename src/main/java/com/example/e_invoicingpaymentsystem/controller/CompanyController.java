@@ -5,10 +5,7 @@ import com.example.e_invoicingpaymentsystem.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -32,5 +29,15 @@ public class CompanyController {
         }
         return companyService.createCompany(companyDto);
     }
+    @DeleteMapping("/{tin}")
+    public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin){
+        return companyService.deleteCompany(tin);
+    }
 
+    @PutMapping("/{tin}")
+    public ResponseEntity<?> updateCompany(@RequestBody CompanyDto companyDto,
+                                           @PathVariable("tin") String tin)  {
+        return companyService.updateCompany(companyDto,tin);
+
+    }
 }

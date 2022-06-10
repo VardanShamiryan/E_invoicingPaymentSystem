@@ -48,9 +48,9 @@ public class CompanyMapper {
         return companyDto;
     }
 
-    public Company toCompany(CompanyDto companyDto){
+    public Company toCompany(CompanyDto companyDto) {
 
-        Company company=new Company();
+        Company company = new Company();
         company.setTin(companyDto.getTin());
         company.setCompanyName(companyDto.getCompanyName());
         company.setCompAccountNumber(companyDto.getCompAccountNumber());
