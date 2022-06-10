@@ -4,6 +4,7 @@ import com.example.e_invoicingpaymentsystem.dto.CompanyDto;
 import com.example.e_invoicingpaymentsystem.mapper.CompanyMapper;
 import com.example.e_invoicingpaymentsystem.model.Company;
 import com.example.e_invoicingpaymentsystem.repository.CompanyRepository;
+import com.example.e_invoicingpaymentsystem.validator.CompanyValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
