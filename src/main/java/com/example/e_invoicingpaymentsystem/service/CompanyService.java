@@ -26,7 +26,6 @@ public class CompanyService {
 
     }
 
-
     public ResponseEntity<?> createCompany(CompanyDto companyDto) {
         if (companyValidator.isValidCompany(companyDto)) {
             Company company = companyMapper.toCompany(companyDto);
@@ -37,11 +36,8 @@ public class CompanyService {
             if (companyRepository.existsCompanyByCompanyName(company.getCompanyName())) {
                 return new ResponseEntity<>("Company with this name already exists!", HttpStatus.BAD_REQUEST);
             }
-            if (companyRepository.existsByCompAccountNumber(company.getCompAccountNumber())) {
+            if (companyRepository.existsCompanyByCompAccountNumber(company.getCompAccountNumber())) {
                 return new ResponseEntity<>("Company with this account number already exists!", HttpStatus.BAD_REQUEST);
-            }
-            if (companyRepository.existsByEmail(company.getEmail())) {
-                return new ResponseEntity<>("Company with this email already exists!", HttpStatus.BAD_REQUEST);
             }
             companyRepository.save(company);
             return new ResponseEntity<>("Company signed-up successfully!.", HttpStatus.OK);
@@ -62,16 +58,26 @@ public class CompanyService {
     }
 
     public ResponseEntity<?> updateCompany(CompanyDto companyDto, String tin) {
-        if (companyValidator.isValidCompany(companyDto)) {
+        if (companyValidator.isValidCompanyDto(companyDto)) {
+
             if (!companyRepository.existsByTin(tin)) {
                 return new ResponseEntity<>("There is no company with such tin!", HttpStatus.BAD_REQUEST);
             }
-            Company company = companyMapper.toCompany(companyDto);
-            if (companyRepository.companyExists(company)) {
-                companyRepository.deleteCompanyByTin(tin);
+
+            if (companyRepository.existsCompanyByCompanyName(companyDto.getCompanyName())) {
+                return new ResponseEntity<>("Company with this name already exists!", HttpStatus.BAD_REQUEST);
             }
-           // company.setTin(tin);
+            if (companyRepository.existsCompanyByCompAccountNumber(companyDto.getCompAccountNumber())) {
+                return new ResponseEntity<>("Company with this account number already exists!", HttpStatus.BAD_REQUEST);
+            }
+            Company company = companyRepository.findByTin(tin);
+            company.setCompanyName(companyDto.getCompanyName());
+            company.setEmail(companyDto.getEmail());
+            company.setPassword(companyDto.getPassword());
+            company.setCompAccountNumber(companyDto.getCompAccountNumber());
+            company.setPhoneNumber(companyDto.getPhoneNumber());
             companyRepository.save(company);
+
             return new ResponseEntity<>("Company is updated!", HttpStatus.OK);
         }
         return new ResponseEntity<>("Company is not valid!", HttpStatus.BAD_REQUEST);

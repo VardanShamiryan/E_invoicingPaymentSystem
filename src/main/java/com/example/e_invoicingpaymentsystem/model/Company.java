@@ -23,7 +23,7 @@ public class Company {
     @Column(name = "comp_id")
     private Long id;
 
-    @Pattern(regexp = "[0-9]", message = "Tim must contain only digits")
+//    @Pattern(regexp = "[0-9]", message = "Tin must contain only digits")
     @Column(name = "tin", unique = true, nullable = false)
     private String tin;
 
@@ -40,7 +40,6 @@ public class Company {
     @Column(name = "email", nullable = false)
     private String email;
 
-    //@Pattern(regexp = "[0-9]", message = "account number must contain only digits and be 16 characters long")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
