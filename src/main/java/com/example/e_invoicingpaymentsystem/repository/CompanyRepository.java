@@ -34,4 +34,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     boolean existsByTin(String tin);
 
+
 }

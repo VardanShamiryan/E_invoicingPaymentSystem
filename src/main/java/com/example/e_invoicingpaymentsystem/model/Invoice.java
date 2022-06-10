@@ -23,11 +23,8 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long invoiceId;
 
-    @Column(name = "invoice_number", nullable = false)
+    @Column(name = "invoice_number", unique = true, nullable = false)
     private String invoiceNumber;
-
-    @Column(name = "invoice_series", nullable = false)
-    private String invoiceSeries;
 
     @Column(name = "delivery_date", nullable = false)
     private LocalDate deliveryDate;

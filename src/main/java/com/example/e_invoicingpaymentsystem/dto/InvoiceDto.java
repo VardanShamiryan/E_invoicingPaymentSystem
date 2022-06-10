@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +17,6 @@ import java.time.LocalDate;
 public class InvoiceDto {
 
     private String invoiceNumber;
-    private String invoiceSeries;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate deliveryDate;
     private String suppAccountNumber;
