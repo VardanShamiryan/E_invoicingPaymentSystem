@@ -17,7 +17,8 @@ import java.util.List;
 @Table(name = "supplier")
 public class Supplier {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_id_generator")
+    @SequenceGenerator(name = "supplier_id_generator", sequenceName = "supplier_id_seq", allocationSize = 30)
     private Long supplierId;
 
     @Column (name = "supplier_tin", nullable = false, unique = true)
@@ -34,5 +35,4 @@ public class Supplier {
 
     @OneToMany (mappedBy = "supplier", cascade = CascadeType.PERSIST)
     List<Debt> debts = new ArrayList<>();
-
 }

@@ -16,7 +16,8 @@ import javax.persistence.*;
 
 public class Debt {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "debt_id_generator")
+    @SequenceGenerator(name = "debt_id_generator", sequenceName = "debt_id_seq", allocationSize = 30)
     private Long debtId;
 
     @Column(name = "total_debt")

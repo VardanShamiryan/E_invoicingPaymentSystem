@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-
     private Double amount;
     private String fromAccountNumber;
     private String toAccountNumber;

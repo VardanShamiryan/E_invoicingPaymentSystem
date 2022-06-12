@@ -20,7 +20,8 @@ import java.util.List;
 public class Invoice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_id_generator")
+    @SequenceGenerator(name = "invoice_id_generator", sequenceName = "invoice_id_seq", allocationSize = 30)
     private Long invoiceId;
 
     @Column(name = "invoice_number", unique = true, nullable = false)

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +18,8 @@ import java.util.Set;
 @Table(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_id_generator")
+    @SequenceGenerator(name = "company_id_generator", sequenceName = "company_id_seq", allocationSize = 30)
     @Column(name = "comp_id")
     private Long id;
 

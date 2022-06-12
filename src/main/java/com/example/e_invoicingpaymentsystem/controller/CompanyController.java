@@ -29,15 +29,15 @@ public class CompanyController {
         }
         return companyService.createCompany(companyDto);
     }
+
     @DeleteMapping("/{tin}")
-    public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin){
+    public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin) {
         return companyService.deleteCompany(tin);
     }
 
     @PutMapping("/{tin}")
     public ResponseEntity<?> updateCompany(@RequestBody CompanyDto companyDto,
-                                           @PathVariable("tin") String tin)  {
-        return companyService.updateCompany(companyDto,tin);
-
+                                           @PathVariable("tin") String tin) {
+        return companyService.updateCompany(companyDto, tin);
     }
 }
