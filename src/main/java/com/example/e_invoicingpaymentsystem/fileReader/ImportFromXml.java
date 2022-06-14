@@ -28,8 +28,7 @@ public class ImportFromXml {
         try {
             File file = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder;
-            dBuilder = dbFactory.newDocumentBuilder();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document document = dBuilder.parse(file);
             document.getDocumentElement().normalize();
             XPath xPath = XPathFactory.newInstance().newXPath();

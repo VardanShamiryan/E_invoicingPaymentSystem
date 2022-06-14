@@ -45,8 +45,8 @@ public class PaymentOrderService {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(order);
 
-//        String url = "http://192.168.10.83:8080/api/account/transferAccountAccount";
-        String url = "http://localhost:8080/api/account/transferAccountAccount";
+        String url = "http://192.168.10.83:8080/api/account/transferAccountAccount";
+        //String url = "http://localhost:8080/api/account/transferAccountAccount";
 
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

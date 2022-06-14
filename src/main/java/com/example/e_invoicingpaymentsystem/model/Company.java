@@ -1,5 +1,6 @@
 package com.example.e_invoicingpaymentsystem.model;
 
+import com.example.e_invoicingpaymentsystem.model.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,6 +38,7 @@ public class Company {
     @Column(name = "comp_account_number", nullable = false)
     private String compAccountNumber;
 
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -49,11 +51,15 @@ public class Company {
     @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
     List<Debt> debts = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "roles")
+    Roles role=Roles.ROLE_USER;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "comp_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private Set<Role> roles;
+//
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "user_roles",
+//            joinColumns = @JoinColumn(name = "comp_id", referencedColumnName = "comp_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+//    private Set<Role> roles;
 
 }

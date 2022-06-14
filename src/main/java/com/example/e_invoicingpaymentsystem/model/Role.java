@@ -22,6 +22,6 @@ public class Role {
     private Long id;
 
     @Column(name = "role", length = 60)
-    private String role;
+    private String role="ROLE_USER";
 
 }

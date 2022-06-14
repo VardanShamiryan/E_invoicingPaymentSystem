@@ -28,9 +28,21 @@ public class InvoiceDto {
 
 
     @JsonProperty("company")
-    private CompanyDto companyDto;
+    private SignUpDto signUpDto;
 
     @JsonProperty("supplier")
     private SupplierDto supplierDto;
 
+    @Override
+    public String toString() {
+        return "InvoiceDto{" +
+                "invoiceNumber='" + invoiceNumber + '\'' +
+                ", deliveryDate=" + deliveryDate +
+                ", suppAccountNumber='" + suppAccountNumber + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", submissionDate=" + submissionDate +
+                ", paymentStatus=" + paymentStatus +
+                ", invoiceDebt=" + invoiceDebt +
+                "}\n";
+    }
 }
