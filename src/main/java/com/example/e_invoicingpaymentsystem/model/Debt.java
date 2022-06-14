@@ -31,6 +31,4 @@ public class Debt {
     @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "fk_supCompDept_supplier_manytoone"))
     Supplier supplier;
 
-
-
 }

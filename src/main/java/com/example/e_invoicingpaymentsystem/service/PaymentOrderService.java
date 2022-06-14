@@ -5,18 +5,14 @@ import com.example.e_invoicingpaymentsystem.model.Debt;
 import com.example.e_invoicingpaymentsystem.model.Invoice;
 import com.example.e_invoicingpaymentsystem.model.PaymentOrder;
 import com.example.e_invoicingpaymentsystem.model.enums.PaymentStatus;
-import com.example.e_invoicingpaymentsystem.repository.CompanyRepository;
 import com.example.e_invoicingpaymentsystem.repository.DebtRepository;
 import com.example.e_invoicingpaymentsystem.repository.InvoiceRepository;
 import com.example.e_invoicingpaymentsystem.repository.PaymentOrderRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Objects;
 
 @Service
 public class PaymentOrderService {

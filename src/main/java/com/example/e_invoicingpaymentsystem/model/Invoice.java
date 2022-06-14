@@ -1,6 +1,7 @@
 package com.example.e_invoicingpaymentsystem.model;
 
 import com.example.e_invoicingpaymentsystem.model.enums.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,7 @@ public class Invoice {
     private Double totalPrice;
 
     @Column(name = "submission_date", nullable = false)
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "DD/MM/yyyy")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate submissionDate;
 
     @Column(name = "payment_status", nullable = false)
@@ -57,5 +58,17 @@ public class Invoice {
     @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "fk_invoice_supplier_manyToOne"))
     private Supplier supplier;
 
-
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "invoiceId=" + invoiceId +
+                ", invoiceNumber='" + invoiceNumber + '\'' +
+                ", deliveryDate=" + deliveryDate +
+                ", suppAccountNumber='" + suppAccountNumber + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", submissionDate=" + submissionDate +
+                ", paymentStatus=" + paymentStatus +
+                ", invoiceDebt=" + invoiceDebt +
+                "}\n";
+    }
 }

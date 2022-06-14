@@ -1,21 +1,17 @@
 package com.example.e_invoicingpaymentsystem.service;
 
-import com.example.e_invoicingpaymentsystem.dto.CompanyDto;
 import com.example.e_invoicingpaymentsystem.dto.ImportedXmlDto;
 import com.example.e_invoicingpaymentsystem.fileReader.ImportFromXml;
 import com.example.e_invoicingpaymentsystem.mapper.FromImportedXmlDtoToInvoice;
 import com.example.e_invoicingpaymentsystem.mapper.FromImportedXmlDtoToSupplier;
-import com.example.e_invoicingpaymentsystem.model.Company;
+import com.example.e_invoicingpaymentsystem.model.Invoice;
+import com.example.e_invoicingpaymentsystem.model.enums.PaymentStatus;
 import com.example.e_invoicingpaymentsystem.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-import java.io.IOException;
 import java.util.List;
 
 import static com.example.e_invoicingpaymentsystem.fileReader.ImportFromXml.importFromXml;
@@ -25,22 +21,25 @@ public class InvoiceService {
     ImportFromXml importFromXml;
     FromImportedXmlDtoToSupplier supplierMapper;
     FromImportedXmlDtoToInvoice invoiceMapper;
+    InvoiceRepository invoiceRepository;
 
     @Autowired
     public InvoiceService(ImportFromXml importFromXml,
                           FromImportedXmlDtoToSupplier supplierMapper,
-                          FromImportedXmlDtoToInvoice invoiceMapper) {
+                          FromImportedXmlDtoToInvoice invoiceMapper,
+                          InvoiceRepository invoiceRepository) {
         this.importFromXml = importFromXml;
         this.supplierMapper = supplierMapper;
         this.invoiceMapper = invoiceMapper;
+        this.invoiceRepository = invoiceRepository;
     }
 
     public ResponseEntity<?> importInvoice(String path) {
         List<ImportedXmlDto> importedXmlDtoList;
         try {
-        importedXmlDtoList = importFromXml(path);
-         } catch (Exception e) {
-           return new ResponseEntity<>("Path doesn't exist!", HttpStatus.BAD_REQUEST);
+            importedXmlDtoList = importFromXml(path);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Path doesn't exist!", HttpStatus.BAD_REQUEST);
         }
         for (ImportedXmlDto importedXmlDto : importedXmlDtoList) {
             supplierMapper.fromImportedXmlDtoToSupplier(importedXmlDto);
@@ -49,4 +48,14 @@ public class InvoiceService {
         return new ResponseEntity<>("Invoices imported.", HttpStatus.OK);
     }
 
+    public ResponseEntity<?> findPaidInvoices() {
+        List<Invoice> invoiceList = invoiceRepository.findInvoicesByPaymentStatus(PaymentStatus.PAID);
+        return new ResponseEntity<>(invoiceList.toString(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> findUnpaidInvoices() {
+        List<Invoice> invoiceList = invoiceRepository.findInvoicesByPaymentStatus(PaymentStatus.UNPAID);
+
+        return new ResponseEntity<>(invoiceList.toString(), HttpStatus.OK);
+    }
 }

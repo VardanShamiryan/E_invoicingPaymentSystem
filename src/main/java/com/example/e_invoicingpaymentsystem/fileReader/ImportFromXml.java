@@ -20,11 +20,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class ImportFromXml {
     public static List<ImportedXmlDto> importFromXml(String path) throws Exception {
         List<ImportedXmlDto> importedXmlDtoList = new ArrayList<>();
-     //   path = "src/main/resources/456.xml";
         try {
             File file = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
