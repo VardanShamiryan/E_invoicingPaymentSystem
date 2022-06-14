@@ -1,7 +1,8 @@
 package com.example.e_invoicingpaymentsystem.mapper;
 
 import com.example.e_invoicingpaymentsystem.dto.ImportedXmlDto;
-import com.example.e_invoicingpaymentsystem.model.*;
+import com.example.e_invoicingpaymentsystem.model.Debt;
+import com.example.e_invoicingpaymentsystem.model.Invoice;
 import com.example.e_invoicingpaymentsystem.model.enums.PaymentStatus;
 import com.example.e_invoicingpaymentsystem.repository.CompanyRepository;
 import com.example.e_invoicingpaymentsystem.repository.DebtRepository;
@@ -9,10 +10,6 @@ import com.example.e_invoicingpaymentsystem.repository.InvoiceRepository;
 import com.example.e_invoicingpaymentsystem.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class FromImportedXmlDtoToInvoice {
@@ -50,7 +47,7 @@ public class FromImportedXmlDtoToInvoice {
             invoice.setSupplier(supplierRepository.getSupplierBySupplierTin(importedXmlDto.getSupplierTin()));
             invoiceRepository.save(invoice);
             if (!debtRepository.existsDebtByCompanyAndSupplier(
-                    invoice.getCompany(), invoice.getSupplier())){
+                    invoice.getCompany(), invoice.getSupplier())) {
                 Debt debt = new Debt();
                 debt.setCompany(invoice.getCompany());
                 debt.setSupplier(invoice.getSupplier());
@@ -59,9 +56,8 @@ public class FromImportedXmlDtoToInvoice {
             }
             Debt debt = debtRepository.
                     findDebtByCompanyAndSupplier(invoice.getCompany(), invoice.getSupplier());
-            debt.setTotal_debt(debt.getTotal_debt()+invoice.getTotalPrice());
+            debt.setTotal_debt(debt.getTotal_debt() + invoice.getTotalPrice());
             debtRepository.save(debt);
-
         }
         return invoiceRepository.getInvoiceByInvoiceNumber(invoiceNumber);
     }
