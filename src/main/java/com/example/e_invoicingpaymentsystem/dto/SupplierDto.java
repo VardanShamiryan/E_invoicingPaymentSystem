@@ -9,9 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SupplierDto {
-
     private String supplierName;
     private String suppAccountNumber;
     private String supplierTin;
-
 }

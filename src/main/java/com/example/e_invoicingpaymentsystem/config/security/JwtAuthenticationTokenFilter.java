@@ -1,6 +1,5 @@
 package com.example.e_invoicingpaymentsystem.config.security;
 
-
 import com.example.e_invoicingpaymentsystem.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,13 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-
     @Autowired
     private JwtTokenUtil tokenUtil;
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -48,9 +44,5 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-
     }
-
-
 }
-

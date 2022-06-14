@@ -1,7 +1,6 @@
 package com.example.e_invoicingpaymentsystem.model;
 
 import com.example.e_invoicingpaymentsystem.model.enums.PaymentStatus;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,6 @@ import java.util.List;
 @Entity
 @Table(name = "invoice")
 public class Invoice {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_id_generator")
     @SequenceGenerator(name = "invoice_id_generator", sequenceName = "invoice_id_seq", allocationSize = 30)
@@ -38,7 +36,6 @@ public class Invoice {
     private Double totalPrice;
 
     @Column(name = "submission_date", nullable = false)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate submissionDate;
 
     @Column(name = "payment_status", nullable = false)

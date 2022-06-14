@@ -1,14 +1,10 @@
 package com.example.e_invoicingpaymentsystem.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Loader;
-import org.springframework.stereotype.Component;
-
 
 @Getter
 @Setter
@@ -29,10 +25,7 @@ public class CompanyDto {
         this.password = password;
     }
 
-   // @JsonIgnore
     public String getPassword() {
         return password;
     }
-
-
 }

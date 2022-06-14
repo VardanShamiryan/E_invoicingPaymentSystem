@@ -1,6 +1,5 @@
 package com.example.e_invoicingpaymentsystem.controller;
 
-import com.example.e_invoicingpaymentsystem.dto.CompanyDto;
 import com.example.e_invoicingpaymentsystem.dto.SignUpDto;
 import com.example.e_invoicingpaymentsystem.service.CompanyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,18 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/api/company")
 public class CompanyController {
-
     CompanyService companyService;
 
     @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-
 
     @PostMapping("/signup")
     public ResponseEntity<?> createCompany(@RequestBody SignUpDto signUpDto) {
@@ -33,10 +29,11 @@ public class CompanyController {
         }
         return companyService.createCompany(signUpDto);
     }
+
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping("deletebytin/{tin}")
-    public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin){
+    public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin) {
         return companyService.deleteCompany(tin);
     }
 
@@ -44,20 +41,19 @@ public class CompanyController {
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @PutMapping("updatebytin/{tin}")
     public ResponseEntity<?> updateCompany(@RequestBody SignUpDto signUpDto,
-                                           @PathVariable("tin") String tin)  {
-        return companyService.updateCompany(signUpDto,tin);
-
+                                           @PathVariable("tin") String tin) {
+        return companyService.updateCompany(signUpDto, tin);
     }
-  @Operation(security = @SecurityRequirement(name = "bearerAuth"))
-  @PreAuthorize("hasAuthority('ROLE_USER')")
-@GetMapping("/findByTin/{tin}")
-    public  ResponseEntity<?> findCompanyByTin( @PathVariable String tin){
-        return companyService.findCompanyByTin(tin);
 
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @GetMapping("/findByTin/{tin}")
+    public ResponseEntity<?> findCompanyByTin(@PathVariable String tin) {
+        return companyService.findCompanyByTin(tin);
     }
 
     @PostMapping("/signIn")
     public ResponseEntity<?> signIn(@RequestParam String tin, @RequestParam String password) throws Exception {
-        return  companyService.signIn(tin, password);
+        return companyService.signIn(tin, password);
     }
 }

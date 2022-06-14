@@ -13,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignUpDto {
-
     private String tin;
     private String companyName;
     private String compAccountNumber;
@@ -43,4 +42,3 @@ public class SignUpDto {
                 '}';
     }
 }
-

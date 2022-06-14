@@ -23,5 +23,4 @@ public class Role {
 
     @Column(name = "role", length = 60)
     private String role="ROLE_USER";
-
 }

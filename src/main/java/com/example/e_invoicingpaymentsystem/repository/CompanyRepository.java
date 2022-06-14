@@ -26,13 +26,10 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
         );
     }
 
-
     boolean existsCompanyByCompanyName(String companyName);
     boolean existsCompanyByCompAccountNumber(String companyAccountNumber);
     boolean existsByEmail(String email);
     Company findByTin(String tin);
 
     boolean existsByTin(String tin);
-
-
 }

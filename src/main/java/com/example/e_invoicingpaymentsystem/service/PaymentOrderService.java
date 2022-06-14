@@ -16,32 +16,24 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PaymentOrderService {
+    final InvoiceRepository invoiceRepository;
+    final DebtRepository debtRepository;
+    final PaymentOrderRepository paymentOrderRepository;
 
-    final
-    InvoiceRepository invoiceRepository;
-    final
-    DebtRepository debtRepository;
-    final
-    PaymentOrderRepository paymentOrderRepository;
-
-    public PaymentOrderService(InvoiceRepository invoiceRepository, DebtRepository debtRepository, PaymentOrderRepository paymentOrderRepository) {
+    public PaymentOrderService(InvoiceRepository invoiceRepository,
+                               DebtRepository debtRepository,
+                               PaymentOrderRepository paymentOrderRepository) {
         this.invoiceRepository = invoiceRepository;
         this.debtRepository = debtRepository;
         this.paymentOrderRepository = paymentOrderRepository;
     }
 
-    public ResponseEntity<?> paymentOrder(
-            Double amount,
-            String invoiceNumber) {
-
+    public ResponseEntity<?> paymentOrder(Double amount, String invoiceNumber) {
         Invoice invoice = invoiceRepository.getInvoiceByInvoiceNumber(invoiceNumber);
         Debt debt = debtRepository.findDebtByCompanyAndSupplier(invoice.getCompany(), invoice.getSupplier());
-
         String fromAccountNumber = invoice.getCompany().getCompAccountNumber();
         String toAccountNumber = invoice.getSuppAccountNumber();
-
         Order order = new Order(amount, fromAccountNumber, toAccountNumber);
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(order);
 
@@ -51,9 +43,7 @@ public class PaymentOrderService {
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
-
         ResponseEntity<?> response = template.exchange(url, HttpMethod.PUT, entity, String.class);
 
         if (response.getStatusCode().value() == 200) {
@@ -71,7 +61,6 @@ public class PaymentOrderService {
             paymentOrder.setInvoice(invoice);
             paymentOrderRepository.save(paymentOrder);
         }
-
         return response;
     }
 }

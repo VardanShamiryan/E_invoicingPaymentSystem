@@ -12,14 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DebtDto {
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/yyyy")
     private Double total_debt;
-
     @JsonProperty("company")
     private SignUpDto signUpDto;
-
     @JsonProperty("supplier")
     private SupplierDto supplierDto;
-
 }

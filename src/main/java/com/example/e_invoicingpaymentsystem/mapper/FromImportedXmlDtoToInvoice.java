@@ -13,19 +13,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FromImportedXmlDtoToInvoice {
-
     InvoiceRepository invoiceRepository;
     SupplierRepository supplierRepository;
     CompanyRepository companyRepository;
-
     DebtRepository debtRepository;
 
     @Autowired
     public FromImportedXmlDtoToInvoice(InvoiceRepository invoiceRepository,
                                        SupplierRepository supplierRepository,
                                        CompanyRepository companyRepository,
-                                       DebtRepository debtRepository
-    ) {
+                                       DebtRepository debtRepository) {
         this.invoiceRepository = invoiceRepository;
         this.supplierRepository = supplierRepository;
         this.companyRepository = companyRepository;
@@ -61,6 +58,4 @@ public class FromImportedXmlDtoToInvoice {
         }
         return invoiceRepository.getInvoiceByInvoiceNumber(invoiceNumber);
     }
-
-
 }

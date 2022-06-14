@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SupplierMapper {
-
     public SupplierDto toSupplierDto(Supplier supplier){
         SupplierDto supplierDto=new SupplierDto();
         supplierDto.setSupplierName(supplier.getSupplierName());
@@ -14,6 +13,7 @@ public class SupplierMapper {
         supplierDto.setSupplierTin(supplier.getSupplierTin());
         return  supplierDto;
     }
+
     public Supplier toSupplier(SupplierDto supplierDto){
         Supplier supplier=new Supplier();
         supplier.setSupplierName(supplierDto.getSupplierName());
@@ -21,5 +21,4 @@ public class SupplierMapper {
         supplier.setSupplierTin(supplierDto.getSupplierTin());
         return supplier;
     }
-
 }

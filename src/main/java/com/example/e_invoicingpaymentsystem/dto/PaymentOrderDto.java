@@ -13,11 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentOrderDto {
-
     private Double paymentAmount;
     private final LocalDate currentPaymentDate = LocalDate.now();
-
     @JsonProperty("invoice")
     private InvoiceDto invoiceDto;
-
 }

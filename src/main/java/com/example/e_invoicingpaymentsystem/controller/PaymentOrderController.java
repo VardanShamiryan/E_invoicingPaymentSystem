@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/payment")
-
 public class PaymentOrderController {
-
     PaymentOrderService paymentOrderService;
 
     public PaymentOrderController(PaymentOrderService paymentOrderService) {
@@ -23,5 +21,4 @@ public class PaymentOrderController {
                                           @RequestParam String invoiceNumber) {
         return paymentOrderService.paymentOrder(amount, invoiceNumber);
     }
-
 }

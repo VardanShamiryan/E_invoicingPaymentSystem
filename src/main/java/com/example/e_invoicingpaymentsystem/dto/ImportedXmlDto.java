@@ -30,6 +30,4 @@ public class ImportedXmlDto {
     //InvoiceMetadata
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate submissionDate; // /ExportedData/SignedData/InvoiceMetadata/SubmissionDate
-
-
 }

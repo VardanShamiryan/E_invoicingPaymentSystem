@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "payment_order")
 public class PaymentOrder {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payment_order_id_generator")
     @SequenceGenerator(name = "payment_order_id_generator", sequenceName = "payment_order_id_seq", allocationSize = 30)
@@ -30,5 +29,4 @@ public class PaymentOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id", foreignKey = @ForeignKey(name = "fk_payOrder_invoice_many_to_one"))
     Invoice invoice;
-
 }

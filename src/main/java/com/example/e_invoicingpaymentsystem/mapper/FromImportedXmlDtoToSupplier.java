@@ -10,11 +10,9 @@ import org.springframework.stereotype.Component;
 public class FromImportedXmlDtoToSupplier {
     SupplierRepository supplierRepository;
 
-
     @Autowired
     public FromImportedXmlDtoToSupplier(SupplierRepository supplierRepository) {
         this.supplierRepository = supplierRepository;
-
     }
 
     public Supplier fromImportedXmlDtoToSupplier(ImportedXmlDto importedXmlDto) {

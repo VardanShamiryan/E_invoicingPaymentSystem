@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvoiceDto {
-
     private String invoiceNumber;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate deliveryDate;
@@ -25,14 +24,10 @@ public class InvoiceDto {
     private LocalDate submissionDate;
     private PaymentStatus paymentStatus = PaymentStatus.UNPAID;
     private Double invoiceDebt;
-
-
     @JsonProperty("company")
     private SignUpDto signUpDto;
-
     @JsonProperty("supplier")
     private SupplierDto supplierDto;
-
     @Override
     public String toString() {
         return "InvoiceDto{" +

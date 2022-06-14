@@ -6,15 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyValidator {
     public boolean isValidCompany(SignUpDto signUpDto) {
-
         return (!(signUpDto.getTin() == null ||
                 signUpDto.getCompanyName() == null ||
                 signUpDto.getCompAccountNumber() == null ||
                 signUpDto.getEmail() == null ||
                 signUpDto.getPhoneNumber() == null ||
-                signUpDto.getPassword() == null
-        )
-        );
+                signUpDto.getPassword() == null));
     }
 
     public boolean isValidCompanyDto(SignUpDto signUpDto) {
@@ -22,8 +19,6 @@ public class CompanyValidator {
                 signUpDto.getCompAccountNumber() == null ||
                 signUpDto.getEmail() == null ||
                 signUpDto.getPhoneNumber() == null ||
-                signUpDto.getPassword() == null
-        )
-        );
+                signUpDto.getPassword() == null));
     }
 }

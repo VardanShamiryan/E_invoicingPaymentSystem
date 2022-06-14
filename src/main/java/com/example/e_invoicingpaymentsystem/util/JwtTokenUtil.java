@@ -12,18 +12,14 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil {
-
     @Value("${jwt.secret}")
     private String secret;
-
     @Value("${jwt.expiration}")
     private Long expiration;
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
-
-
 
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
@@ -54,7 +50,6 @@ public class JwtTokenUtil {
         final Date createdDate = new Date();
         final Date expirationDate = calculateExpirationDate(createdDate);
         Claims claims = Jwts.claims().setSubject(subject);
-       //claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -65,15 +60,6 @@ public class JwtTokenUtil {
                 .compact();
     }
 
-//    private String generateToken(Map<String, Object> claims, String subject) {
-//        final long now = System.currentTimeMillis();
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setSubject(subject)
-//                .setIssuedAt(new Date(now))
-//                .setExpiration(new Date(now + JWT_TOKEN_VALIDITY * 1000))
-//                .signWith(SignatureAlgorithm.HS512, secret).compact();
-//    }
     public Boolean validateToken(String token, String username) {
         final String usernameToken = getUsernameFromToken(token);
         return (
@@ -84,6 +70,4 @@ public class JwtTokenUtil {
     private Date calculateExpirationDate(Date createdDate) {
         return new Date(createdDate.getTime() + expiration * 2000);
     }
-
-    }
-
+}
