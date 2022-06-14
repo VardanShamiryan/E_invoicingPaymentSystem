@@ -6,21 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Loader;
-import org.springframework.stereotype.Component;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyDto {
+public class SignUpDto {
+
     private String tin;
     private String companyName;
     private String compAccountNumber;
     private String email;
     private String phoneNumber;
-    private String token;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -29,10 +27,20 @@ public class CompanyDto {
         this.password = password;
     }
 
-   // @JsonIgnore
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
-
+    @Override
+    public String toString() {
+        return "CompanyDto{" +
+                "tin='" + tin + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", compAccountNumber='" + compAccountNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
+

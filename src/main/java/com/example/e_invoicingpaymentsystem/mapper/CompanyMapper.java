@@ -1,12 +1,23 @@
 package com.example.e_invoicingpaymentsystem.mapper;
 
-import com.example.e_invoicingpaymentsystem.dto.CompanyDto;
+import com.example.e_invoicingpaymentsystem.dto.SignUpDto;
 import com.example.e_invoicingpaymentsystem.model.Company;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class CompanyMapper {
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public CompanyMapper(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+//    public CompanyMapper(BCryptPasswordEncoder passwordEncoder) {
+//        this.passwordEncoder = passwordEncoder;
+//    }
+
+
     //    private final PasswordEncoder passwordEncoder;
 //
 //    public CompanyMapper(PasswordEncoder passwordEncoder) {
@@ -23,41 +34,34 @@ public class CompanyMapper {
 //        company.setPhoneNumber(signUpDto.getPhoneNumber());
 //        return company;
 //    }
-    private static final AES aes = new AES();
 
-    public String encryptPassword(String password) {
-        String encryptedMessage = null;
-        try {
-            aes.init();
-            encryptedMessage = aes.encrypt(password);
-        } catch (Exception ignored) {
-        }
-        return encryptedMessage;
+
+    public SignUpDto toCompanyDto(Company company) {
+
+        SignUpDto signUpDto = new SignUpDto();
+        signUpDto.setTin(company.getTin());
+        signUpDto.setCompanyName(company.getCompanyName());
+        signUpDto.setCompAccountNumber(company.getCompAccountNumber());
+        signUpDto.setEmail(company.getEmail());
+        signUpDto.setPhoneNumber(company.getPhoneNumber());
+        signUpDto.setPassword(company.getPassword());
+
+        return signUpDto;
     }
 
-    public CompanyDto toCompanyDto(Company company) {
-
-        CompanyDto companyDto = new CompanyDto();
-        companyDto.setTin(company.getTin());
-        companyDto.setCompanyName(company.getCompanyName());
-        companyDto.setCompAccountNumber(company.getCompAccountNumber());
-        companyDto.setEmail(company.getEmail());
-        companyDto.setPhoneNumber(company.getPhoneNumber());
-        companyDto.setPassword(company.getPassword());
-
-        return companyDto;
-    }
-
-    public Company toCompany(CompanyDto companyDto) {
+    public Company toCompany(SignUpDto signUpDto) {
 
         Company company = new Company();
-        company.setTin(companyDto.getTin());
-        company.setCompanyName(companyDto.getCompanyName());
-        company.setCompAccountNumber(companyDto.getCompAccountNumber());
-        company.setEmail(companyDto.getEmail());
-        company.setPhoneNumber(companyDto.getPhoneNumber());
-        company.setPassword(encryptPassword(companyDto.getPassword()));
+        company.setTin(signUpDto.getTin());
+        company.setCompanyName(signUpDto.getCompanyName());
+        company.setCompAccountNumber(signUpDto.getCompAccountNumber());
+        company.setEmail(signUpDto.getEmail());
+        company.setPhoneNumber(signUpDto.getPhoneNumber());
+        company.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+        //company.setPassword(signUpDto.getPassword());
         return company;
     }
+
+
 
 }

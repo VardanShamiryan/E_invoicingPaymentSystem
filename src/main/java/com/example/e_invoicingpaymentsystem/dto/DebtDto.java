@@ -17,7 +17,7 @@ public class DebtDto {
     private Double total_debt;
 
     @JsonProperty("company")
-    private CompanyDto companyDto;
+    private SignUpDto signUpDto;
 
     @JsonProperty("supplier")
     private SupplierDto supplierDto;
