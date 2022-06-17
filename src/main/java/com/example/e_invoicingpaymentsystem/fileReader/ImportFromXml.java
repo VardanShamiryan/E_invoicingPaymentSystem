@@ -39,27 +39,46 @@ public class ImportFromXml {
                 Node nNode = nodeList.item(i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-
                     ImportedXmlDto importXmlDto = new ImportedXmlDto();
 
-                    importXmlDto.setInvoiceNumber(eElement.getElementsByTagName("Number").item(0).getTextContent());
-                    importXmlDto.setInvoiceSeries(eElement.getElementsByTagName("Series").item(0).getTextContent());
-                    importXmlDto.setDeliveryDate(LocalDate.parse(eElement.
-                            getElementsByTagName("SupplyDate").item(0).getTextContent().substring(0, 10)));
-                    importXmlDto.setSupplierTin(eElement.getElementsByTagName("TIN").item(0).getTextContent());
-                    importXmlDto.setSupplierName(eElement.getElementsByTagName("Name").item(0).getTextContent());
-                    importXmlDto.setSuppAccountNumber(eElement.getElementsByTagName("BankAccountNumber").item(0).getTextContent());
-                    importXmlDto.setBuyerTin(eElement.getElementsByTagName("TIN").item(1).getTextContent());
-                    int length = eElement.getElementsByTagName("TotalPrice").getLength();
-                    importXmlDto.setTotalPrice(Double.parseDouble(eElement.getElementsByTagName("TotalPrice").item(length - 1).getTextContent()));
-                    importXmlDto.setSubmissionDate(LocalDate.parse(eElement.
-                            getElementsByTagName("SubmissionDate").item(0).getTextContent().substring(0, 10)));
-                    importedXmlDtoList.add(importXmlDto);
+                    if (eElement.getElementsByTagName("ParentInvoiceNumber").getLength() != 0) {
+
+                        importXmlDto.setParentInvoiceNumber(eElement.getElementsByTagName("ParentInvoiceNumber").item(0).getTextContent());
+                        importXmlDto.setInvoiceNumber(eElement.getElementsByTagName("Number").item(0).getTextContent());
+                        importXmlDto.setInvoiceSeries(eElement.getElementsByTagName("Series").item(0).getTextContent());
+                        importXmlDto.setDeliveryDate(LocalDate.parse(eElement.
+                                getElementsByTagName("SupplyDate").item(0).getTextContent().substring(0, 10)));
+                        importXmlDto.setSupplierTin(eElement.getElementsByTagName("TIN").item(0).getTextContent());
+                        importXmlDto.setSupplierName(eElement.getElementsByTagName("Name").item(0).getTextContent());
+                        importXmlDto.setBuyerTin(eElement.getElementsByTagName("TIN").item(1).getTextContent());
+                        int length = eElement.getElementsByTagName("TotalPrice").getLength();
+                        importXmlDto.setTotalPrice(Double.parseDouble(eElement.getElementsByTagName("TotalPrice").item(length - 1).getTextContent()));
+                        importedXmlDtoList.add(importXmlDto);
+
+
+                    } else {
+
+                        importXmlDto.setInvoiceNumber(eElement.getElementsByTagName("Number").item(0).getTextContent());
+                        importXmlDto.setInvoiceSeries(eElement.getElementsByTagName("Series").item(0).getTextContent());
+                        importXmlDto.setDeliveryDate(LocalDate.parse(eElement.
+                                getElementsByTagName("SupplyDate").item(0).getTextContent().substring(0, 10)));
+                        importXmlDto.setSupplierTin(eElement.getElementsByTagName("TIN").item(0).getTextContent());
+                        importXmlDto.setSupplierName(eElement.getElementsByTagName("Name").item(0).getTextContent());
+                        importXmlDto.setSuppAccountNumber(eElement.getElementsByTagName("BankAccountNumber").item(0).getTextContent());
+                        importXmlDto.setBuyerTin(eElement.getElementsByTagName("TIN").item(1).getTextContent());
+                        int length = eElement.getElementsByTagName("TotalPrice").getLength();
+                        importXmlDto.setTotalPrice(Double.parseDouble(eElement.getElementsByTagName("TotalPrice").item(length - 1).getTextContent()));
+                        importXmlDto.setSubmissionDate(LocalDate.parse(eElement.
+                                getElementsByTagName("SubmissionDate").item(0).getTextContent().substring(0, 10)));
+                        importedXmlDtoList.add(importXmlDto);
+                    }
                 }
             }
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+        } catch (ParserConfigurationException | SAXException | IOException |
+                 XPathExpressionException e) {
             throw new Exception();
         }
         return importedXmlDtoList;
+
     }
 }

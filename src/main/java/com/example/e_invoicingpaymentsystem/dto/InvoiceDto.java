@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.time.LocalDate;
 
 @Getter
@@ -28,6 +29,8 @@ public class InvoiceDto {
     private SignUpDto signUpDto;
     @JsonProperty("supplier")
     private SupplierDto supplierDto;
+
+    private String adjustmentInvoiceNumber;
     @Override
     public String toString() {
         return "InvoiceDto{" +

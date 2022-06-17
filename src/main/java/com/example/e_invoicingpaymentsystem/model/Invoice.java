@@ -44,6 +44,9 @@ public class Invoice {
     @Column(name = "invoice_debt")
     private Double invoiceDebt;
 
+    @Column(name = "adjustment_invoice_number")
+    private String adjustmentInvoiceNumber;
+
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.PERSIST)
     private List<PaymentOrder> paymentOrders = new ArrayList<>();
 

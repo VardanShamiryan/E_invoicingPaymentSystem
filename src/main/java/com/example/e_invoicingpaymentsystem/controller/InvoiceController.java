@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/invoice")
+@RequestMapping("/api/invoices")
 public class InvoiceController {
     InvoiceService invoiceService;
 
@@ -20,25 +20,29 @@ public class InvoiceController {
 
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    @PostMapping("/importinvoice")
+    @PostMapping("/importinvoices")
     public ResponseEntity<?> createCompany(@RequestParam String path) throws Exception {
         return invoiceService.importInvoice(path);
     }
 
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    @GetMapping("/allinvoices")
-    public ResponseEntity<?> findAllInvoices( @RequestParam int page, @RequestParam int perPage){
-        return invoiceService.findAllInvoices(page,perPage);
+    @GetMapping
+    public ResponseEntity<?> findAllInvoices(@RequestParam int page, @RequestParam int perPage) {
+        return invoiceService.findAllInvoices(page, perPage);
     }
 
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/paid")
     public ResponseEntity<?> findPayedInvoices() {
         return invoiceService.findPaidInvoices();
     }
 
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/unpaid")
-    public ResponseEntity<?> findUnpaidInvoices() {
-        return invoiceService.findUnpaidInvoices();
+    public ResponseEntity<?> findUnpaidAndPartiallyPaidInvoices() {
+        return invoiceService.findUnpaidAndPartiallyPaidInvoices();
     }
 }

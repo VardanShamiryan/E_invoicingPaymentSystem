@@ -21,7 +21,7 @@ public class Debt {
     private Long debtId;
 
     @Column(name = "total_debt")
-    private Double total_debt;
+    private Double totalDebt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", foreignKey = @ForeignKey(name = "fk_supCompDept_company_manytoone"))

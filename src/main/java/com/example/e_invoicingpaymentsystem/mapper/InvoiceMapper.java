@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class InvoiceMapper {
-    CompanyMapper companyMapper;
-    SupplierMapper supplierMapper;
+    private CompanyMapper companyMapper;
+    private SupplierMapper supplierMapper;
 
     @Autowired
     public InvoiceMapper(CompanyMapper companyMapper, SupplierMapper supplierMapper) {
@@ -30,6 +30,7 @@ public class InvoiceMapper {
         invoiceDto.setInvoiceDebt(invoice.getInvoiceDebt());
         invoiceDto.setSignUpDto(companyMapper.toCompanyDto(invoice.getCompany()));
         invoiceDto.setSupplierDto(supplierMapper.toSupplierDto(invoice.getSupplier()));
+        invoiceDto.setAdjustmentInvoiceNumber(invoice.getAdjustmentInvoiceNumber());
         return invoiceDto;
     }
 

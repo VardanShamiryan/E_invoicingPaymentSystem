@@ -9,6 +9,8 @@ import com.example.e_invoicingpaymentsystem.validator.CompanyValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,10 +19,10 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Service
 public class CompanyService {
-    CompanyRepository companyRepository;
-    CompanyMapper companyMapper;
-    CompanyValidator companyValidator;
-    JwtTokenUtil jwtTokenUtil;
+    private CompanyRepository companyRepository;
+    private CompanyMapper companyMapper;
+    private CompanyValidator companyValidator;
+    private JwtTokenUtil jwtTokenUtil;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
@@ -58,20 +60,23 @@ public class CompanyService {
     }
 
     public ResponseEntity<?> deleteCompany(String tin) {
-        if (!companyRepository.existsByTin(tin)) {
-            return new ResponseEntity<>("There is no company with such id!", HttpStatus.BAD_REQUEST);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        if (currentPrincipalName.equals(tin)) {
+            Long companyId = companyRepository.findByTin(tin).getId();
+            companyRepository.deleteById(companyId);
+            return new ResponseEntity<>("Company is deleted.", HttpStatus.OK);
         }
-
-        Long companyId = companyRepository.findByTin(tin).getId();
-        companyRepository.deleteById(companyId);
-        return new ResponseEntity<>("Company is deleted.", HttpStatus.OK);
+        return new ResponseEntity<>("You can delete only your company!", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> updateCompany(SignUpDto signUpDto, String tin) {
         if (companyValidator.isValidCompanyDto(signUpDto)) {
 
-            if (!companyRepository.existsByTin(tin)) {
-                return new ResponseEntity<>("There is no company with such tin!", HttpStatus.BAD_REQUEST);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipalName = authentication.getName();
+            if (!currentPrincipalName.equals(tin)){
+                return new ResponseEntity<>("You can update only your company!", HttpStatus.BAD_REQUEST);
             }
             if (companyRepository.existsCompanyByCompanyName(signUpDto.getCompanyName())) {
                 return new ResponseEntity<>("Company with this name already exists!", HttpStatus.BAD_REQUEST);
@@ -92,8 +97,10 @@ public class CompanyService {
         return new ResponseEntity<>("Company is not valid!", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<?> findCompanyByTin(String tin) {
-        Company company = companyRepository.findByTin(tin);
+    public ResponseEntity<?> findYourCompany() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Company company = companyRepository.findByTin(currentPrincipalName);
         SignUpDto signUpDto = companyMapper.toCompanyDto(company);
         return new ResponseEntity<>(signUpDto.toString(), HttpStatus.OK);
     }

@@ -30,12 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and().authorizeRequests()
-                .antMatchers("/api/company/signUp").permitAll()
-                .antMatchers("/api/company/signIn").permitAll()
-                .antMatchers("/api/company/findByTin").hasAuthority("ROLE_USER")
-                .antMatchers("/api/company/deletebytin").hasAuthority("ROLE_USER")
-                .antMatchers("/api/company/updatebytin").hasAuthority("ROLE_USER")
-                .antMatchers("/api/invoice/all").hasAuthority("ROLE_USER");
+                .antMatchers("/api/companies/signup").permitAll()
+                .antMatchers("/api/companies/signin").permitAll()
+                .antMatchers("/api/companies/updatebytin").hasAuthority("ROLE_USER")
+                .antMatchers("/api/companies/bytin").hasAuthority("ROLE_USER")
+                .antMatchers("/api/companies/updatebytin").hasAuthority("ROLE_USER")
+                .antMatchers("/api/invoices/all").hasAuthority("ROLE_USER");
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
 

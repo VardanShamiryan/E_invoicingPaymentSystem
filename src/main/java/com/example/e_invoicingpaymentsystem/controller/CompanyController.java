@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/company")
+@RequestMapping("/api/companies")
 public class CompanyController {
     CompanyService companyService;
 
@@ -32,7 +32,7 @@ public class CompanyController {
 
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    @DeleteMapping("deletebytin/{tin}")
+    @DeleteMapping("bytin/{tin}")
     public ResponseEntity<?> deleteCompany(@PathVariable("tin") String tin) {
         return companyService.deleteCompany(tin);
     }
@@ -47,12 +47,12 @@ public class CompanyController {
 
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    @GetMapping("/findByTin/{tin}")
-    public ResponseEntity<?> findCompanyByTin(@PathVariable String tin) {
-        return companyService.findCompanyByTin(tin);
+    @GetMapping("/company")
+    public ResponseEntity<?> findYourCompany() {
+        return companyService.findYourCompany();
     }
 
-    @PostMapping("/signIn")
+    @PostMapping("/signin")
     public ResponseEntity<?> signIn(@RequestParam String tin, @RequestParam String password) throws Exception {
         return companyService.signIn(tin, password);
     }

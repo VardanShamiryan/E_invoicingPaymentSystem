@@ -25,4 +25,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return new CurrentUser(company);
     }
+
+
 }

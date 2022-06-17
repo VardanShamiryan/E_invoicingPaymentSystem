@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FromImportedXmlDtoToSupplier {
-    SupplierRepository supplierRepository;
+    private SupplierRepository supplierRepository;
 
     @Autowired
     public FromImportedXmlDtoToSupplier(SupplierRepository supplierRepository) {
