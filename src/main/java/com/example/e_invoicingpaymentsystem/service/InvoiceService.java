@@ -53,14 +53,15 @@ public class InvoiceService {
         } catch (Exception e) {
             return new ResponseEntity<>("Path doesn't exist!", HttpStatus.BAD_REQUEST);
         }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
         for (ImportedXmlDto importedXmlDto : importedXmlDtoList) {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String currentPrincipalName = authentication.getName();
-            if (currentPrincipalName.equals(importedXmlDto.getBuyerTin())) {
-                supplierMapper.fromImportedXmlDtoToSupplier(importedXmlDto);
-                invoiceMapper.fromImportedXmlDtoToInvoice(importedXmlDto);
+            if (!currentPrincipalName.equals(importedXmlDto.getBuyerTin())) {
+                return new ResponseEntity<>("You can't import others invoices.",
+                        HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity<>("You can't import others invoices.", HttpStatus.BAD_REQUEST);
+            supplierMapper.fromImportedXmlDtoToSupplier(importedXmlDto);
+            invoiceMapper.fromImportedXmlDtoToInvoice(importedXmlDto);
         }
         return new ResponseEntity<>("Invoices imported.", HttpStatus.OK);
     }

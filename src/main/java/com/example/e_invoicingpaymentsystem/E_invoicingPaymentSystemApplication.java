@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication()
 @OpenAPIDefinition(
         info = @Info(
-                title = "E-invoicing payment system",
+                title = "Invoicing payment system",
                 version = "1",
                 description = "Payment system"))
 @SecurityScheme(

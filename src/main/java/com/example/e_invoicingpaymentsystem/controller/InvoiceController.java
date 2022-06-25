@@ -21,7 +21,7 @@ public class InvoiceController {
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/importinvoices")
-    public ResponseEntity<?> createCompany(@RequestParam String path) throws Exception {
+    public ResponseEntity<?> importInvoices(@RequestParam String path) throws Exception {
         return invoiceService.importInvoice(path);
     }
 

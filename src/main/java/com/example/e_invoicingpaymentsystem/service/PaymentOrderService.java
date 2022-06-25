@@ -40,7 +40,7 @@ public class PaymentOrderService {
         Invoice invoice = invoiceRepository.getInvoiceByInvoiceNumber(invoiceNumber);
         if (amount > invoice.getInvoiceDebt()) {
             return new ResponseEntity<>("Your invoice debt is " + invoice.getInvoiceDebt() + "" +
-                    "! Please pay less or equal then.", HttpStatus.BAD_REQUEST);
+                    "! Please pay less or equal than.", HttpStatus.BAD_REQUEST);
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -65,7 +65,6 @@ public class PaymentOrderService {
 
         try {
             ResponseEntity<?> response = template.exchange(url, HttpMethod.PUT, entity, String.class);
-
             if (response.getStatusCode().value() == 200) {
                 invoice.setInvoiceDebt(invoice.getInvoiceDebt() - amount);
                 if (invoice.getInvoiceDebt() == 0) {
@@ -83,9 +82,7 @@ public class PaymentOrderService {
             }
             return response;
         } catch (Exception e) {
-            return new ResponseEntity<>("Something went wrong!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-
 }
